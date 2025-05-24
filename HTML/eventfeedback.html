@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>feedbackform</title>
+    <style>
+                .container{
+                    height: 100vh;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .wrong{
+                    border: 2px solid red;
+                }
+            .correct{
+                border: 2px solid green;
+            }
+             form{
+            background-color:gainsboro;
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <form action="POST" onsubmit="event.preventDefault()">
+            <label for="phone">PhoneNo:
+            </label>
+            <input type="tel" name="phone" id="phone" placeholder="9876543210" max="10" onblur="checknum()">
+            
+            <label for="drop">Select The </label>
+            <select name="" id="drop" onchange="fee()">
+                <option value="">none</option>
+                <option value="300">Basicfee-300</option>
+                <option value="600">Mediumfee-600</option>
+                <option value="1000">Premiumfee-1000</option>
+            </select>
+            
+            <label for="fees">Fees:<span id="fees"></span></label>
+            <label for="iamgee">click the image</label>
+            <img src="./images/event2.png" alt="now inmage" title="samole iamgee" id="img" onclick="toggle()">
+            <label for="message">feedback</label>
+            <textarea name="message" id="message" onkeypress="count()"></textarea>
+            <label for="totchar">Charcount:<span id="totchar"></span></label>
+            <span id ='confirms'></span>
+            <button type="submit" onclick="confirm()">Subit</button>
+        </form>
+    </div>
+    <script>
+      function checknum() {
+    var number = document.getElementById('phone');
+    if (number.value.length === 10) {
+        number.classList.add('correct');
+        number.classList.remove('wrong');
+        console.log('Success');
+    } else {
+        number.classList.add('wrong');
+        number.classList.remove('correct');
+        console.log('Error');
+    }
+}
+
+function fee() {
+    var drop = document.getElementById('drop').value;
+    var fees = document.getElementById('fees');
+    fees.innerText = drop ? `Selected value: ${drop}` : 'The value is not selected';
+}
+
+var cou = 0;
+function count() {
+    cou++;
+    document.getElementById('totchar').innerText = cou;
+}
+
+var i = 0;
+function toggle() {
+    i++;
+    var img = document.getElementById('img');
+    img.style.transition = 'transform 0.5s ease-in-out';
+    img.style.transform = i % 2 === 1 ? 'scale(1.4)' : 'scale(1)';
+}
+
+function confirm() {
+    var number = document.getElementById('phone').value;
+    var drop = document.getElementById('drop').value;
+    var confirm = document.getElementById('confirms');
+
+    if (number !== '' && drop !== '' && cou > 0) {
+        confirm.innerText = 'Form is submitted';
+        confirm.style.color = 'green';
+    } else {
+        confirm.innerText = 'Form is not submitted';
+        confirm.style.color = 'red';
+    }
+}
+    </script>
+</body>
+</html>

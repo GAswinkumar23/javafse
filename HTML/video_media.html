@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Promo Video</title>
+    <style>
+        .msg {
+            font-size: 18px;
+            color: green;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Exclusive Event Promo Video</h2>
+
+    <video id="video" width="600" controls>
+        <source src="./video/event.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="msg" id="status"></div>
+
+    <form id="form" onsubmit="event.preventDefault()">
+        <label for="name">Enter your name:</label>
+        <input type="text" id="name" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById("video").oncanplay = function() {
+            document.getElementById("status").innerText = "Video ready to play!";
+        };
+
+        window.onbeforeunload = function(event) {
+            if (document.getElementById("name").value === "") {
+                return "You have unsaved changes. Are you sure you want to leave?";
+            }
+        };
+    </script>
+
+</body>
+</html>
