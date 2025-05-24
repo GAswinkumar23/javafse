@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RegesterationForm</title>
+    <style>
+        .container{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+        form{
+            background-color:gainsboro;
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form onsubmit="event.preventDefault();">
+            <label for="name">name</label><input type="text" name="name" id="name" required placeholder="ex:aswinkumarg">
+            
+            <label for="email">E-mail</label><input type="email" name="email" id="email" required placeholder="ex:g.aswin@gmail.com">
+            <label for="date">Date</label><input type="date" name="date" id="date" required placeholder="dd:mm:yyyy">
+            <label for="eventtype">Event Type</label> <select name="eventtype" id="eventtype">
+                <option value="Coding">Coding</option>
+                <option value="Hackathon">Hackathon</option>
+                <option value="CTF">CTF</option>
+            </select>
+            <label for="message">Message</label>
+            <textarea name="message" id="message" rows="3" placeholder="Additional details"></textarea>
+            <output class="output"></output>
+        <button type="submit" onclick="confirm()">Submit</button>
+        </form>
+    </div>
+    <script>
+        function confirm() {
+            let name = document.getElementById('name').value;
+            let email = document.getElementById('email').value;
+            let date = document.getElementById('date').value;
+            let eventType = document.getElementById('eventtype').value;
+            let message = document.getElementById('message').value || "No additional details";
+
+            if(name!='' && email!=''  && date!='' && eventType!='' && message!='')
+        {
+            document.querySelector('.output').innerText = `Thank you, ${name}! You've registered for ${eventType} on ${date}. Confirmation has been sent to ${email}.`;
+        }
+        else{
+             document.querySelector('.output').innerText = "Enter the missing field";
+        }
+        }
+    </script>
+
+</body>
+</html>
