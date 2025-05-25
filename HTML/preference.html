@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance</title>
+</head>
+<body style="height:100vh;display:flex;justify-content: center;align-items: center;flex-direction: column;">
+
+<h2>Select Your Favorite Event</h2>
+
+<select id="eventType">
+  <option value="">--Choose Event--</option>
+  <option value="music">Music</option>
+  <option value="tech">Tech</option>
+  <option value="art">Art</option>
+</select>
+
+<br><br>
+<button onclick="savePreference()">Save Preference</button>
+<button onclick="clearPreference()">Clear Preferences</button>
+<label for="view">The stored Data in LS SS is : <span id="view">
+
+</span></label>
+<script>
+  const eventDropdown = document.getElementById("eventType");
+
+  // Load saved preference on page load
+  window.onload = function () {
+    const savedEvent = localStorage.getItem("favEvent");
+    console.log(savedEvent);
+    if (savedEvent) {
+      eventDropdown.value = savedEvent;
+    }
+  };
+
+  function savePreference() {
+    const selected = eventDropdown.value;
+    localStorage.setItem("favEvent", selected);
+    sessionStorage.setItem("tempEvent", selected);
+    alert("Saved your event preference!");
+    document.getElementById('view').innerText=eventDropdown.value;
+  }
+
+  function clearPreference() {
+    localStorage.clear();
+    sessionStorage.clear();
+    alert("Preferences cleared!");
+    eventDropdown.value = "";
+    document.getElementById('view').innerText=eventDropdown.value;
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debugging</title>
+</head>
+<body>
+     <h1>College Events</h1>
+    
+    <div id="eventsContainer"></div>
+    
+    <script>
+        let events = [
+            { name: "Hackathon", date: "2023-11-15" },
+            { name: "Music Fest", date: "2023-11-20" },
+            { name: "Sports Day", date: "2023-11-25" }
+        ];
+        
+        function loadEvents() {
+            let container = document.getElementById("eventsContainer");
+            
+            for (let i = 0; i < events.length; i++) {
+                let card = document.createElement("div");
+                card.className = "event-card";
+                
+                card.innerHTML = `<h3>${name}</h3><p>Date: ${events[i].date}</p>`;
+                
+                container.appendChild(card);
+            }
+        }
+        
+        
+        window.onload = loadEvents;
+    </script>
+</body>
+</html>
